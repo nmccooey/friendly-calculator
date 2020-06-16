@@ -40,11 +40,30 @@ function handleOperation(value) {
             }
             rerender();
             break;
+        case "+/-":
+            if (Number(currentDisplay) > 0) {
+                currentDisplay = pos_to_neg(Number(currentDisplay));
+            } else if (Number(currentDisplay) < 0) {
+                currentDisplay = neg_to_pos(Number(currentDisplay));
+            } else {
+                currentDisplay = "0";
+            }
+            
+            rerender();
+            break;
+        case ".":
+            if (!currentDisplay.includes(".")) {
+                currentDisplay += ".";
+            }
+            
+            rerender();
+            break;
         case "=":
             if (previousOperator === null) {
                     return;
             }
-            operate(parseInt(currentDisplay));
+            
+            operate(Number(currentDisplay));
             previousOperator = null;
             currentDisplay = "" + runningTotal;
             runningTotal = 0;
@@ -58,7 +77,8 @@ function handleOperation(value) {
 }
 
 function handleMath(operator) {
-    const intCurrentDisplay = parseInt(currentDisplay);
+    const intCurrentDisplay = Number(currentDisplay);
+
     if (runningTotal === 0) {
         runningTotal = intCurrentDisplay;
     } else {
@@ -70,6 +90,8 @@ function handleMath(operator) {
 
 function operate(intCurrentDisplay) {
     if (previousOperator === "+") {
+        //console.log(intCurrentDisplay);
+        //console.log(runningTotal);
         runningTotal += intCurrentDisplay;
     } else if (previousOperator === "-") {
         runningTotal -= intCurrentDisplay;
@@ -78,6 +100,14 @@ function operate(intCurrentDisplay) {
     } else if (previousOperator === "/") {
         runningTotal /= intCurrentDisplay; 
     }
+}
+
+function pos_to_neg(number) {
+    return -Math.abs(number);
+}
+
+function neg_to_pos(number) {
+    return Math.abs(number);
 }
 
 function rerender() {

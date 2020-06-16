@@ -1,3 +1,12 @@
+body {
+    background-color: rgb(213, 232, 238);
+}
+
+.title {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 44px;
+    margin-bottom: 10px;
+}
 
 .header-container {
     display: flex;
@@ -17,6 +26,7 @@
     padding: 15px;
     border: black solid 2px;
     border-radius: 25px;
+    background-color: lightcoral;
 }
 
 .display-screen {
@@ -42,6 +52,7 @@
 
 .calc-button:focus {
     outline: 0;
+    border: solid black 4px;
 }
 
 .calc-button:hover{
