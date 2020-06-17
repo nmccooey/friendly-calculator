@@ -40,7 +40,7 @@ function handleOperation(value) {
             }
             rerender();
             break;
-        case "+/-":
+        case "±":
             if (Number(currentDisplay) > 0) {
                 currentDisplay = pos_to_neg(Number(currentDisplay));
             } else if (Number(currentDisplay) < 0) {
@@ -90,14 +90,12 @@ function handleMath(operator) {
 
 function operate(intCurrentDisplay) {
     if (previousOperator === "+") {
-        //console.log(intCurrentDisplay);
-        //console.log(runningTotal);
         runningTotal += intCurrentDisplay;
     } else if (previousOperator === "-") {
         runningTotal -= intCurrentDisplay;
-    } else if (previousOperator === "*") {
+    } else if (previousOperator === "×") {
         runningTotal *= intCurrentDisplay;
-    } else if (previousOperator === "/") {
+    } else if (previousOperator === "÷") {
         runningTotal /= intCurrentDisplay; 
     }
 }
